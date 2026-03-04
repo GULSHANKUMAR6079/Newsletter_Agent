@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  # ── PostgreSQL 16 with pgvector ────────────────────────────────────────────
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: bwa_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-blogwriter}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Blog Writing Agent (Streamlit) ─────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bwa_app
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      TAVILY_API_KEY: ${TAVILY_API_KEY:-}
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-blogwriter}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      DEBUG: ${DEBUG:-false}
+    volumes:
+      - ./output:/app/output
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8501/_stcore/health" ]
+      interval: 30s
+      timeout: 10s
+      start_period: 20s
+      retries: 3
+
+volumes:
+  postgres_data:
+    driver: local

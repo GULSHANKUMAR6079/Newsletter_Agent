@@ -1,0 +1,416 @@
+/* ================================================================
+   Blog Writing Agent — Premium Dark Theme
+   Font: Inter (Google Fonts)
+   Accent: #7c3aed (deep violet)
+   Background: #0a0a14
+   ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Root variables ─────────────────────────────────────────────── */
+:root {
+    --bg-base:       #0a0a14;
+    --bg-surface:    #12121e;
+    --bg-elevated:   #1a1a2e;
+    --bg-hover:      #1e1e32;
+    --accent:        #7c3aed;
+    --accent-light:  #9f5ff5;
+    --accent-glow:   rgba(124, 58, 237, 0.35);
+    --accent-subtle: rgba(124, 58, 237, 0.1);
+    --text-primary:  #e2e8f0;
+    --text-muted:    #94a3b8;
+    --text-dim:      #64748b;
+    --border:        rgba(255,255,255,0.08);
+    --border-accent: rgba(124,58,237,0.4);
+    --success:       #22c55e;
+    --warning:       #f59e0b;
+    --danger:        #ef4444;
+    --radius:        12px;
+    --radius-sm:     8px;
+    --shadow:        0 4px 24px rgba(0,0,0,0.4);
+    --shadow-glow:   0 0 24px rgba(124,58,237,0.2);
+    --transition:    all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Base ───────────────────────────────────────────────────────── */
+html, body, [data-testid="stApp"] {
+    background-color: var(--bg-base) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', -apple-system, sans-serif !important;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────── */
+[data-testid="stSidebar"] {
+    background: var(--bg-surface) !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: var(--text-primary) !important;
+}
+
+/* ── Sidebar brand ───────────────────────────────────────────────── */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0 16px;
+}
+
+.brand-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 0 12px var(--accent));
+}
+
+.brand-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+
+.brand-sub {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 2px;
+}
+
+/* ── Main content area ─────────────────────────────────────────────── */
+.main .block-container {
+    padding: 1.5rem 2rem 3rem !important;
+    max-width: 1200px !important;
+}
+
+/* ── Tab styling ─────────────────────────────────────────────────── */
+[data-testid="stTabs"] [data-baseweb="tab-list"] {
+    background: var(--bg-surface) !important;
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--border) !important;
+    padding: 4px !important;
+    gap: 2px !important;
+}
+
+[data-testid="stTabs"] [data-baseweb="tab"] {
+    background: transparent !important;
+    color: var(--text-muted) !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    transition: var(--transition) !important;
+    padding: 8px 14px !important;
+}
+
+[data-testid="stTabs"] [data-baseweb="tab"]:hover {
+    background: var(--bg-elevated) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-testid="stTabs"] [aria-selected="true"] {
+    background: var(--accent) !important;
+    color: #fff !important;
+    box-shadow: var(--shadow-glow) !important;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────── */
+[data-testid="stButton"] > button {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light)) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: var(--radius) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    padding: 10px 20px !important;
+    transition: var(--transition) !important;
+    box-shadow: 0 2px 12px var(--accent-glow) !important;
+}
+
+[data-testid="stButton"] > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px var(--accent-glow) !important;
+    opacity: 0.95 !important;
+}
+
+[data-testid="stButton"] > button:active {
+    transform: translateY(0) !important;
+}
+
+/* Secondary/outline buttons */
+[data-testid="stDownloadButton"] > button {
+    background: var(--bg-elevated) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-accent) !important;
+    border-radius: var(--radius) !important;
+    font-weight: 500 !important;
+    transition: var(--transition) !important;
+}
+
+[data-testid="stDownloadButton"] > button:hover {
+    background: var(--accent-subtle) !important;
+    border-color: var(--accent) !important;
+}
+
+/* ── Copy button ─────────────────────────────────────────────────── */
+.copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 6px;
+}
+
+.copy-btn:hover {
+    background: var(--accent-subtle);
+    border-color: var(--accent);
+    color: var(--accent-light);
+}
+
+/* ── Metrics ─────────────────────────────────────────────────────── */
+[data-testid="stMetric"] {
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    padding: 16px !important;
+    transition: var(--transition) !important;
+}
+
+[data-testid="stMetric"]:hover {
+    border-color: var(--border-accent) !important;
+    box-shadow: var(--shadow-glow) !important;
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--text-muted) !important;
+    font-size: 0.8rem !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--text-primary) !important;
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+}
+
+/* ── Inputs & text areas ─────────────────────────────────────────── */
+[data-testid="stTextInput"] input,
+[data-testid="stTextArea"] textarea,
+[data-testid="stSelectbox"] > div {
+    background: var(--bg-elevated) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: var(--transition) !important;
+}
+
+[data-testid="stTextInput"] input:focus,
+[data-testid="stTextArea"] textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
+
+/* ── Dataframe ───────────────────────────────────────────────────── */
+[data-testid="stDataFrame"] {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+}
+
+/* ── Status boxes ────────────────────────────────────────────────── */
+[data-testid="stAlert"] {
+    background: var(--bg-elevated) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    color: var(--text-primary) !important;
+}
+
+/* ── Expander ────────────────────────────────────────────────────── */
+[data-testid="stExpander"] {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+}
+
+[data-testid="stExpander"] summary {
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+}
+
+/* ── Code blocks ─────────────────────────────────────────────────── */
+code {
+    background: var(--bg-elevated) !important;
+    color: var(--accent-light) !important;
+    border-radius: 4px !important;
+    padding: 2px 6px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.85em !important;
+}
+
+pre {
+    background: #0d1117 !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    padding: 16px !important;
+}
+
+/* ── Tweet cards ─────────────────────────────────────────────────── */
+.tweet-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    transition: var(--transition);
+    position: relative;
+}
+
+.tweet-card:hover {
+    border-color: var(--border-accent);
+    background: var(--bg-hover);
+}
+
+.tweet-num {
+    color: var(--accent-light);
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+.tweet-chars {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+}
+
+/* ── Verdict badges ──────────────────────────────────────────────── */
+.verdict-badge {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.verdict-publish {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.verdict-revise {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.verdict-reject {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ── Empty state ─────────────────────────────────────────────────── */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px 60px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.empty-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px var(--accent));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+}
+
+.empty-state h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 40px;
+}
+
+/* ── Feature grid ────────────────────────────────────────────────── */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.feature-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 12px;
+    transition: var(--transition);
+    cursor: default;
+}
+
+.feature-card:hover {
+    border-color: var(--border-accent);
+    background: var(--accent-subtle);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.feature-icon {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+.feature-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ── Divider ─────────────────────────────────────────────────────── */
+hr {
+    border: none !important;
+    border-top: 1px solid var(--border) !important;
+    margin: 24px 0 !important;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Status widget ───────────────────────────────────────────────── */
+[data-testid="stStatusWidget"] {
+    background: var(--bg-surface) !important;
+    border: 1px solid var(--border-accent) !important;
+    border-radius: var(--radius) !important;
+}
